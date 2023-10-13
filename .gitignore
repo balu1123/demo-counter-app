@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# ignore ALL .Jenkinsfile.swl, .swm, .swn, .swo, .swp files
+.Jenkinsfile.swl
+.Jenkinsfile.swm
+.Jenkinsfile.swn
+.Jenkinsfile.swo
+.Jenkinsfile.swp
