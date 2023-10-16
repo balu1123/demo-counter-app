@@ -30,9 +30,9 @@ pipeline {
            }
        }   
 	 stage('Sonar Static Code Analysis'){
-             steps{
+             steps {
 		withSonarQubeEnv(credentialsId: 'sonar') {
-                   sh 'mvn clean package sonar:sonar'
+                sh 'mvn clean package sonar:sonar'
                 }     
 	     }		 
 	 }   
