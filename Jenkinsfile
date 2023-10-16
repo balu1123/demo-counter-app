@@ -4,11 +4,7 @@ pipeline {
 	tools{
            maven 'maven3'		
 	}
-
-	environment {
-        SCANNER_HOME= tool 'sonar-scanner'
-    }
-         
+        
     stages{
        stage('Git Checkout'){
            steps{
@@ -35,7 +31,7 @@ pipeline {
        }   
 	 stage('Sonarqube Analysis'){
              steps{
-		scripts{     
+		script{     
 		     withSonarQubeEnv(credentialsId: 'sonar'){
                      sh 'mvn clean package sonar:sonar'
 		   }	
