@@ -51,10 +51,10 @@ pipeline {
 		     nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], 
 			     credentialsId: 'nexus-cred', 
 			     groupId: 'com.example', 
-			     nexusUrl: '54.87.54.102:8081/', 
+			     nexusUrl: '54.87.54.102:8081', 
 			     nexusVersion: 'nexus3', 
 			     protocol: 'http', 
-			     repository: 'demoapp-release', 
+			     repository: 'demoapp-release/', 
 			     version: '1.0.0'
                 }     
 	     }		 
