@@ -20,6 +20,39 @@ pipeline {
            }
        }
 
+	stage('UNIT Testing'){
+           steps{
+	       sh 'mvn verify -DskipUnitTests'
+           }
+       }    
+
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
