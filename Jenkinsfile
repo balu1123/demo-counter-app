@@ -20,7 +20,7 @@ pipeline {
            }
        }
 
-	stage('UNIT Testing'){
+	stage('Integrated Unit Testing'){
            steps{
 	       sh 'mvn verify -DskipUnitTests'
            }
