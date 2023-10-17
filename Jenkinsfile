@@ -56,7 +56,7 @@ pipeline {
 		     nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], 
 			     credentialsId: 'nexus-cred', 
 			     groupId: 'com.example', 
-			     nexusUrl: '3.81.222.92:8081/', 
+			     nexusUrl: '34.230.2.10:8081/', 
 			     nexusVersion: 'nexus3', 
 			     protocol: 'http', 
 			     repository: nexusRepo, 
@@ -74,6 +74,17 @@ pipeline {
 		    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bbaludevops/$JOB_NAME:latest'	
 		}	    
 	    }	 
+	 }   
+	 stage('Push Image to DockerHub'){
+	    steps{
+	       script{
+		   withCredentials([string(credentialsId: 'dock-cred', variable: 'docker-hub-cred')]) {
+                           sh 'docker login -u bbaludevops -p ${docker-hub-cred}'
+			   sh 'docker image push bbaludevops/$JOB_NAME:v1.$BUILD_ID'
+			   sh 'docker image push bbaludevops/$JOB_NAME:latest'
+                  }    
+	       }	    
+	    } 	 
 	 }   
 	    
     }
