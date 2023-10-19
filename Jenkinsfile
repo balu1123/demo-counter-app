@@ -29,5 +29,13 @@ pipeline {
               sh 'mvn clean install'
            }
        }   
+
+       stage('Sonar code quality Check'){
+           steps{
+              withSonarQubeEnv(credentialsId: 'sonar_cred') {
+                sh 'mvn clean package sonar:sonar'
+              }
+           }
+       }   
     }
 }
