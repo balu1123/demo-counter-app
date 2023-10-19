@@ -6,7 +6,7 @@ pipline {
     }
 
     stages{
-       stage(Git Checkout){
+       stage('GitCheckout'){
           steps{
              git branch: 'main', changelog: false, poll: false, url: 'https://github.com/balu1123/demo-counter-app.git'
           } 
