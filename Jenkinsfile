@@ -54,7 +54,7 @@ pipeline {
 
                 def pom = readMavenPom file: 'pom.xml'
 
-                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "nexusRepo" : "demoapp-release"
+                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "demoapp-SNAPSHOT" : "demoapp-release"
                  nexusArtifactUploader artifacts: [
                     [artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']
                     ],
