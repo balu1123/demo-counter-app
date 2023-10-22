@@ -73,6 +73,10 @@ pipeline {
        stage('Docker Image Build'){
           steps{
             script{
+                sh 'sudo apt install docker -y'
+                sh 'sudo systemctl start docker'
+                sh 'sudo systemctl enable docker'
+                sh 'sudo systemctl status docker'
                 sh 'sudo usermod -a -G docker jenkins'
                 sh 'sudo chmod 666 /var/run/docker.sock'
                 sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID'
