@@ -102,6 +102,14 @@ pipeline {
             }
           }
        } 
+      
+       stage('Trivy Scanner for Docker image'){
+           steps{
+             script{
+                 sh "trivy image bbaludevops/counter-demo:latest"
+              }
+           }
+       }  
 
     }
 }
