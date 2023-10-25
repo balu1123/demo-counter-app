@@ -48,15 +48,6 @@ pipeline {
            }
        }  
 
-       stage('OWASP Dependency Check'){
-           steps{
-             script{
-                 dependencyCheck additionalArguments: '', odcInstallation: 'DP'
-                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-              }
-           }
-       }  
-
        stage('Upload Artifact to Nexus'){
            steps{
              script{
@@ -78,6 +69,15 @@ pipeline {
               }
            }
        } 
+
+       stage('OWASP Dependency Check'){
+           steps{
+             script{
+                 dependencyCheck additionalArguments: '', odcInstallation: 'DP'
+                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+              }
+           }
+       }  
 
        stage('Docker Image Build'){
           steps{
