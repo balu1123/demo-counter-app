@@ -52,7 +52,7 @@ pipeline {
            steps{
              script{
 
-                def pom = readMavenPom file: 'pom.xml'
+                /*def pom = readMavenPom file: 'pom.xml'
 
                 def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "demoapp-SNAPSHOT" : "demoapp-release"
 
@@ -68,7 +68,7 @@ pipeline {
                   version: "${pom.version}"
 
 
-                  /*nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/uber.jar', type: 'jar']],
+                  nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/uber.jar', type: 'jar']],
                      credentialsId: 'nexu',
                      groupId: 'com.example', 
                      nexusUrl: '54.80.185.174:8081',
@@ -77,9 +77,14 @@ pipeline {
                      repository: 'nexus', 
                      version: '1.0.4'*/
 
-
-
-
+                     nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], 
+                     credentialsId: 'snexus', 
+                     groupId: 'com.example', 
+                     nexusUrl: '172.31.15.220:8081', 
+                     nexusVersion: 'nexus3', 
+                     protocol: 'http', 
+                     repository: 'Project1-Release', 
+                     version: '2.0.3'
               }
            }
        } 
