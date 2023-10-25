@@ -59,16 +59,31 @@ pipeline {
                  nexusArtifactUploader artifacts: [
                     [artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']
                     ],
-                  credentialsId: 'nexus', 
+                  credentialsId: 'nexu', 
                   groupId: 'com.example', 
                   nexusUrl: '192.168.9.147:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: nexusRepo, 
                   version: "${pom.version}"
+
+
+                  /*nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/uber.jar', type: 'jar']],
+                     credentialsId: 'nexu',
+                     groupId: 'com.example', 
+                     nexusUrl: '54.80.185.174:8081',
+                     nexusVersion: 'nexus3',
+                     protocol: 'http', 
+                     repository: 'nexus', 
+                     version: '1.0.4'*/
+
+
+
+
               }
            }
        } 
+       
 
        stage('OWASP Dependency Check'){
            steps{
