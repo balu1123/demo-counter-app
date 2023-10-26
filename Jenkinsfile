@@ -57,26 +57,23 @@ pipeline {
            }
        }  
 
-       stage('Upload Artifact to Nexus'){
+       stage('Nexus Artifact Uploader'){
            steps{
              script{
-
-                def pom = readMavenPom file: 'pom.xml'
-
-                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "testdemo-SNAPSHOT" : "testdemo-release"
-
                  nexusArtifactUploader artifacts: [
                   [artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']
                   ], 
-                  credentialsId: 'nexus', 
+                  credentialsId: 'nexus_cred', 
                   groupId: 'com.example', 
-                  nexusUrl: '192.168.1.171:8081', 
+                  nexusUrl: '54.197.90.116:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
-                  repository: 'nexusRepo', 
-                  version: "${pom.version}"
-               }
-            }
-         }      
+                  repository: 'testdemo-release', 
+                  version: '1.0.0'
+                 
+              }
+           }
+       }  
+           
    }
 }   
