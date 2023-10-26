@@ -66,17 +66,17 @@ pipeline {
                 def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "demoapp-SNAPSHOT" : "demoapp-release"
 
                  nexusArtifactUploader artifacts: [
-                    [artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']
-                    ],
+                  [artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']
+                  ], 
                   credentialsId: 'nexus', 
                   groupId: 'com.example', 
                   nexusUrl: '192.168.1.171:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
-                  repository: nexusRepo, 
-                  version: "${pom.version}"
+                  repository: 'nexusRepo', 
+                  version: '${pom.version}'
                }
             }
          }      
-    }
+   }
 }   
