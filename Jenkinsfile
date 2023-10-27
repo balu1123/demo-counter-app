@@ -78,19 +78,16 @@ pipeline {
            }
        }  
 
-       stage('Push Image to the DockerHub'){
-          steps{
-            script{
-                withCredentials([string(credentialsId: 'docker', variable: 'docker_hub_cred')]) {
-                     
-                     sh 'sudo chmod 666 /var/run/docker.sock'
-                     sh 'docker login -u bbaludevops -p ${docker_hub}'
-                     sh 'docker image push bbaludevops/$JOB_NAME:v1.$BUILD_ID'
-                     sh 'docker image push bbaludevops/$JOB_NAME:latest'
-                }                
-            }
-          }
-       } 
+       stage('Docker Image Build'){
+	        steps{
+	           script{
+		           sh 'sudo chmod 666 /var/run/docker.sock'	
+		           sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+		           sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bbaludevops/$JOB_NAME:v1.$BUILD_ID'	
+		           sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bbaludevops/$JOB_NAME:latest'	
+		        }	    
+	         }	 
+	      }   
            
    }
 }   
