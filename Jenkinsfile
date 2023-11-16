@@ -57,7 +57,7 @@ pipeline{
         }
       }
        
-      stage("nexus Repo")
+      stage("nexus Repo"){
         steps{
           script{
              def pom = readMavenpom file: 'pom.xml'
@@ -75,5 +75,6 @@ pipeline{
                   version: "${pom.version}"
           }
         } 
+      }  
     }
 }
