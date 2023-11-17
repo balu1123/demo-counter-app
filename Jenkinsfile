@@ -40,5 +40,22 @@ pipeline{
 				}
 			}
 		}
+
+		stage("Quality Gates"){
+		   steps{
+			 script{
+				waitForQualityGate abortPipeline: false, credentialsId: 'sonar'
+			 }
+		   }
+		}
+
+		stage("OWASP Dependency"){
+		   steps{
+			  script{
+				dependencyCheck additionalArguments: '', odcInstallation: 'DP'
+				dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+			  }
+			}
+		}
 	}
 }
