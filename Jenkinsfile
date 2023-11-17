@@ -21,14 +21,14 @@ pipeline{
 
 	   stage("Integration Testing"){
 		  steps{
-			sh 'mvn verify -DskipUnitTest'
+			sh 'mvn verify -DskipUnitTests'
 		  }
 	   }
 
 	   stage("Maven build"){
-		steps{
+		 steps{
 			sh 'mvn clean install'
-		      }
+		    }
 	    }
 
 		stage("Sonarqube Analysis"){
