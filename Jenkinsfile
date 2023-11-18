@@ -68,11 +68,11 @@ pipeline{
 			],
 				credentialsId: 'nexus_cred',
 				groupId: 'com.example',
-				nexusUrl: '3.80.175.179:8081',
+				nexusUrl: '23.22.136.29:8081',
 				nexusVersion: 'nexus3',
 				protocol: 'http',
 				repository: 'demoapp-release',
-				version: '3.0.0'
+				version: '1.0.0'
 		 }
 	   }	
 	}
