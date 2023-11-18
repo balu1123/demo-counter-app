@@ -5,13 +5,19 @@ pipeline{
    }	
 
    stages{
-	 stage("Git Checkout"){
+	stage("Git Checkout"){
 	  steps{
 		script{
 		  git branch: 'main', changelog: false, poll: false, url: 'https://github.com/balu1123/demo-counter-app.git'	
 		}
 	  }
 	}
+    
+	stage("UNIT Testing"){
+	  steps{
+		sh 'mvn test'
+		}
+	  }	
 	
   }
 }
