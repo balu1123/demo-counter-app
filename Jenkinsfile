@@ -78,5 +78,16 @@ pipeline{
 		 }
 	   }	
 	}
+
+	stage('Docker Image Build'){
+	        steps{
+	           script{
+		           sh 'sudo chmod 666 /var/run/docker.sock'	
+		           sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+		           sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bbaludevops/$JOB_NAME:v1.$BUILD_ID'	
+		           sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bbaludevops/$JOB_NAME:latest'	
+		    }	    
+	    }	 
+	} 
   }
 }
